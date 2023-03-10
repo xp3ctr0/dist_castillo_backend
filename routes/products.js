@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const programmingLanguages = require('../services/products');
+const products = require('../services/products');
 
 /* GET programming languages. */
 router.get('/', async function(req, res, next) {
     try {
-        res.json(await programmingLanguages.getMultiple(req.query.page));
+        res.json(await products.getMultiple(req.query.page));
     } catch (err) {
         console.error(`Error while getting products `, err.message);
         next(err);

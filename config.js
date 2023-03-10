@@ -1,10 +1,10 @@
 const config = {
     db: {
         /* don't expose password or any sensitive info, done only for demo */
-        database: 'first_test',
-        user: 'hbz17nnhvyweduja605r',
+        database: 'db_dist_castillo',
+        user: 'gtfzm1f1oki04b3wuen4',
         host: 'us-east.connect.psdb.cloud',
-        password: 'pscale_pw_ajARFN4uv11AucrLyvvc8TMgnVoLICeaQnZ3FvNz9TF',
+        password: 'pscale_pw_43uHnzc0bognVOPIzYUOlVv7nv9B7EdRlrfKq1LARWt',
         ssl: {
             rejectUnauthorized: false
         }
