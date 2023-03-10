@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const productsRouter = require("./routes/products");
+const rolesRouter = require("./routes/roles");
 app.use(express.json());
 app.use(
     express.urlencoded({
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
     res.json({ message: "ok" });
 });
 app.use("/products", productsRouter);
+app.use("/roles", rolesRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
