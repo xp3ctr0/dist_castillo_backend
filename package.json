@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql2": "^3.2.0",
     "nodemon": "^2.0.21"
@@ -7,9 +8,10 @@
   "name": "dist_castillo_backend",
   "version": "1.0.0",
   "description": "Backend",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +23,7 @@
   "bugs": {
     "url": "https://github.com/xp3ctr0/dist_castillo_backend/issues"
   },
-  "homepage": "https://github.com/xp3ctr0/dist_castillo_backend#readme"
+  "homepage": "https://github.com/xp3ctr0/dist_castillo_backend#readme",
+  "devDependencies": {
+  }
 }
