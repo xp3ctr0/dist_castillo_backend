@@ -11,4 +11,5 @@ const config = {
     },
     listPerPage: 100,
 };
-module.exports = config;
+
+export default config;
