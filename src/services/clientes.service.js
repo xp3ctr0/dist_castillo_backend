@@ -2,9 +2,19 @@ const pool = require('./db');
 const helper = require('../config/helper');
 const config = require('../config/config');
 
-async function getProductosService(req, res) {
-    const rows = await pool.query(`SELECT * FROM PRODUCTS`);
+async function getClientesService(req, res) {
+    const rows = await pool.query(`SELECT CLI_ID,CLI_RESTAURANT,CLI_CONTACT,CLI_DOCUMENT,C.CIT_NAME,CLI_ADDRESS,CLI_PHONE FROM CLIENTS CL INNER JOIN CITIES C ON CLI_CITY = C.CIT_ID`);
     return helper.emptyOrRows(rows);
+}
+
+async function createClientService(req, res) {
+    try {
+        const {document,restaurant,contact,city,address,phone} = req.body;
+        const rows = await pool.query("INSERT INTO CLIENTS (CLI_DOCUMENT, CLI_RESTAURANT, CLI_CONTACT, CLI_CITY, CLI_ADDRESS, CLI_PHONE) VALUES (?, ?,?,?,?,?)", [document,restaurant,contact,city,address,phone]);
+        res.status(201).json({message:'OK'});
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
 }
 
 // async function getRolService(req, res) {
@@ -17,15 +27,15 @@ async function getProductosService(req, res) {
 //     }
 // }
 //
-async function createProductService(req, res) {
-    try {
-        const {name, un} = req.body;
-        const rows = await pool.query("INSERT INTO PRODUCTS (PRO_NAME, PRO_UNIDAD_MEDIDA) VALUES (?, ?)", [name, un]);
-        res.status(201).json({message:'OK'});
-    } catch (error) {
-        return res.status(500).json({message: error.message});
-    }
-}
+// async function createClientesService(req, res) {
+//     try {
+//         const {name, un} = req.body;
+//         const rows = await pool.query("INSERT INTO PRODUCTS (PRO_NAME, PRO_UNIDAD_MEDIDA) VALUES (?, ?)", [name, un]);
+//         res.status(201).json({message:'OK'});
+//     } catch (error) {
+//         return res.status(500).json({message: error.message});
+//     }
+// }
 //
 // async function updateRolService(req, res) {
 //     try {
@@ -60,5 +70,5 @@ async function createProductService(req, res) {
 // }
 
 module.exports = {
-    getProductosService,createProductService
+    getClientesService,createClientService
 }

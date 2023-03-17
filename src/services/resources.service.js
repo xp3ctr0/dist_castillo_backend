@@ -2,9 +2,19 @@ const pool = require('./db');
 const helper = require('../config/helper');
 const config = require('../config/config');
 
-async function getProductosService(req, res) {
-    const rows = await pool.query(`SELECT * FROM PRODUCTS`);
+async function getCitiesService(req, res) {
+    const rows = await pool.query(`SELECT * FROM CITIES`);
     return helper.emptyOrRows(rows);
+}
+
+async function createCitiesService(req, res) {
+    try {
+        const {name} = req.body;
+        const rows = await pool.query("INSERT INTO CITIES (CIT_NAME) VALUES (?)", [name]);
+        res.status(201).json({message:'OK'});
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
 }
 
 // async function getRolService(req, res) {
@@ -17,15 +27,7 @@ async function getProductosService(req, res) {
 //     }
 // }
 //
-async function createProductService(req, res) {
-    try {
-        const {name, un} = req.body;
-        const rows = await pool.query("INSERT INTO PRODUCTS (PRO_NAME, PRO_UNIDAD_MEDIDA) VALUES (?, ?)", [name, un]);
-        res.status(201).json({message:'OK'});
-    } catch (error) {
-        return res.status(500).json({message: error.message});
-    }
-}
+
 //
 // async function updateRolService(req, res) {
 //     try {
@@ -60,5 +62,5 @@ async function createProductService(req, res) {
 // }
 
 module.exports = {
-    getProductosService,createProductService
+    getCitiesService,createCitiesService
 }

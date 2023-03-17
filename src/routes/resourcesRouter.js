@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const {getProductos,postProduct} = require('../controllers/productosController');
+const {getCities,postCities} = require('../controllers/resourcesController');
 
 /* GET programming languages. */
 // @ts-ignore
-router.get("/",getProductos);
+router.get("/cities",getCities);
+router.post("/cities",postCities);
 // router.get("/:id",getRol);
 // router.put("/:id",updateRol);
-router.post("/",postProduct);
+// router.post("/",postProduct);
 // router.delete("/:id",deleteRol);
 
 module.exports = router;
