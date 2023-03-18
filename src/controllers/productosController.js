@@ -3,8 +3,10 @@
 const handleHttp = require("../utils/error.handle");
 const {
     getProductosService,
-    createProductService
+    createProductService,
+    updateProductService
 } = require("../services/productos.service");
+const {updateRolService} = require("../services/roles.service");
 
 const getProductos = async (req, res) => {
     try {
@@ -20,10 +22,19 @@ const postProduct = async (req, res) => {
         const responsePostProduct = await createProductService(req, res);
         res.send(responsePostProduct);
     } catch (e) {
-        handleHttp(res, "ERROR_POST_ITEMS");
+        handleHttp(res, "ERROR_POST_PRODUCTOS");
+    }
+}
+
+const updateProduct = async (req, res) => {
+    try {
+        const responseUpdateProduct = await updateProductService(req, res);
+        res.send(responseUpdateProduct);
+    } catch (e) {
+        handleHttp(res, "ERROR_UPDATE_PRODUCTOS");
     }
 }
 
 // export {getRol, getRoles, postRol, updateRol, deleteRol}
 
-module.exports = {getProductos, postProduct}
+module.exports = {getProductos, postProduct,updateProduct}

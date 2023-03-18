@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const {getProductos,postProduct} = require('../controllers/productosController');
+const {getProductos,postProduct,updateProduct} = require('../controllers/productosController');
 
 /* GET programming languages. */
 // @ts-ignore
 router.get("/",getProductos);
 // router.get("/:id",getRol);
-// router.put("/:id",updateRol);
+router.put("/",updateProduct);
 router.post("/",postProduct);
 // router.delete("/:id",deleteRol);
 

@@ -26,24 +26,23 @@ async function createProductService(req, res) {
         return res.status(500).json({message: error.message});
     }
 }
-//
-// async function updateRolService(req, res) {
-//     try {
-//         const {id} = req.params;
-//         const {name, state} = req.body;
-//         const result = await pool.query(
-//             "UPDATE ROLES SET ROL_NAME = ?, ROL_ESTATE = ? WHERE ROL_ID = ?", [name, state, id]);
-//         // @ts-ignore
-//         if (result.affectedRows === 0) {
-//             return res.status(404).json({message: "ROL not found"});
-//         }
-//         const rows = await pool.query("SELECT * FROM ROLES WHERE ROL_ID = ?", [id]);
-//         // @ts-ignore
-//         res.json(rows[0]);
-//     } catch (error) {
-//         return res.status(500).json({message: error.message});
-//     }
-// }
+
+async function updateProductService(req, res) {
+    try {
+        const {id,name, un,stock,state} = req.body;
+        const result = await pool.query(
+            "UPDATE PRODUCTS SET PRO_NAME = ?, PRO_UNIDAD_MEDIDA = ?, PRO_STOCK = ?, PRO_ESTATE = ? WHERE PRO_ID = ?", [name, un,stock,state,id]);
+        // @ts-ignore
+        if (result.affectedRows === 0) {
+            return res.status(404).json({message: "ROL not found"});
+        }
+        const rows = await pool.query("SELECT * FROM PRODUCTS WHERE PRO_ID = ?", [id]);
+        // @ts-ignore
+        res.status(201).json({message:'OK'});
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
+}
 //
 // async function deleteRolService(req, res) {
 //     try {
@@ -60,5 +59,5 @@ async function createProductService(req, res) {
 // }
 
 module.exports = {
-    getProductosService,createProductService
+    getProductosService,createProductService,updateProductService
 }
